@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #fff7ed, #ffffff, #eff6ff);
+  }
+}
+
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .prevent-scroll {
+    overscroll-behavior: none;
+  }
+}
