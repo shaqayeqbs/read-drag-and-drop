@@ -95,7 +95,7 @@ function App() {
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 200, // 200ms delay to distinguish from scrolling
+        delay: 100, // Reduced delay for better responsiveness since we handle touch-action
         tolerance: 8, // Allow 8px of movement during the delay
       },
     })

@@ -26,7 +26,7 @@ export const Cart: React.FC<CartProps> = ({
   return (
     <div
       ref={setNodeRef}
-      className={`bg-white rounded-3xl shadow-2xl p-6 sticky top-6 transition-all duration-300 prevent-scroll ${
+      className={`bg-white rounded-3xl shadow-2xl p-6 sticky top-6 transition-all duration-300 prevent-scroll select-none touch-callout-none ${
         isOver ? "ring-4 ring-primary ring-opacity-50 scale-105" : ""
       }`}
     >

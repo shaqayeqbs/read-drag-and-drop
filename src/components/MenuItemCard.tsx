@@ -32,7 +32,7 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-200 touch-manipulation ${
+      className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-200 touch-manipulation select-none touch-callout-none ${
         isDragging
           ? "opacity-50 scale-105 shadow-2xl z-50"
           : "hover:shadow-xl hover:scale-102"
@@ -41,13 +41,13 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
       <div
         ref={setActivatorNodeRef}
         {...listeners}
-        className="cursor-grab active:cursor-grabbing"
+        className="cursor-grab active:cursor-grabbing touch-none"
       >
         <div className="relative h-48 overflow-hidden">
           <img
             src={item.image}
             alt={item.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover pointer-events-none"
             draggable={false}
           />
           <div className="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full font-bold text-sm shadow-lg">
