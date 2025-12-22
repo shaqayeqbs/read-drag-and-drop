@@ -28,9 +28,8 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
   const combinedStyle: React.CSSProperties = {
     ...style,
-    touchAction: "none", // Critical for iOS - prevents browser scroll handling
-    WebkitTouchCallout: "none" as const,
     WebkitUserSelect: "none" as const,
+    userSelect: "none" as const,
   };
 
   return (
