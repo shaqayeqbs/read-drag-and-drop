@@ -1,8 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import {
   DndContext,
-  TouchSensor,
-  MouseSensor,
+  PointerSensor,
   useSensor,
   useSensors,
   DragOverlay,
@@ -86,17 +85,11 @@ function App() {
   const lastAddTime = useRef<number | null>(null);
 
   // Configure sensors with proper touch support
-  // This is CRITICAL for mobile/tablet functionality
+  // PointerSensor works on both mouse and touch, including iOS Safari
   const sensors = useSensors(
-    useSensor(MouseSensor, {
+    useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8, // 8px of movement required before drag starts
-      },
-    }),
-    useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 100, // Reduced delay for better responsiveness since we handle touch-action
-        tolerance: 8, // Allow 8px of movement during the delay
       },
     })
   );

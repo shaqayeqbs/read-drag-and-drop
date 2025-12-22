@@ -19,7 +19,6 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
     transform,
     transition,
     isDragging,
-    setActivatorNodeRef,
   } = useSortable({ id: item.id });
 
   const style = {
@@ -27,32 +26,34 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
     transition,
   };
 
+  const combinedStyle: React.CSSProperties = {
+    ...style,
+    touchAction: "none", // Critical for iOS - prevents browser scroll handling
+    WebkitTouchCallout: "none" as const,
+    WebkitUserSelect: "none" as const,
+  };
+
   return (
     <div
       ref={setNodeRef}
-      style={style}
+      style={combinedStyle}
       {...attributes}
-      className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-200 touch-manipulation select-none touch-callout-none ${
+      {...listeners}
+      className={`bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-200 cursor-grab active:cursor-grabbing ${
         isDragging
           ? "opacity-50 scale-105 shadow-2xl z-50"
           : "hover:shadow-xl hover:scale-102"
       }`}
     >
-      <div
-        ref={setActivatorNodeRef}
-        {...listeners}
-        className="cursor-grab active:cursor-grabbing touch-none"
-      >
-        <div className="relative h-48 overflow-hidden">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-cover pointer-events-none"
-            draggable={false}
-          />
-          <div className="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full font-bold text-sm shadow-lg">
-            {item.price.toLocaleString("fa-IR")} تومان
-          </div>
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover pointer-events-none"
+          draggable={false}
+        />
+        <div className="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full font-bold text-sm shadow-lg">
+          {item.price.toLocaleString("fa-IR")} تومان
         </div>
       </div>
 
@@ -63,6 +64,8 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({
         </p>
 
         <button
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation();
             onAddToCart(item);
