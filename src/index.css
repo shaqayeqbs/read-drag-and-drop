@@ -3,9 +3,35 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #ffffff;
+    --surface: #f8fafc;
+    --text: #1e293b;
+  }
+
+  .dark {
+    --background: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+  }
+
   body {
     min-height: 100vh;
-    background: linear-gradient(to bottom right, #fff7ed, #ffffff, #eff6ff);
+    background: var(--background);
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Apply Vazir font for Persian/RTL */
+  [dir="rtl"] body,
+  [dir="rtl"] * {
+    font-family: "Vazir", system-ui, sans-serif;
+  }
+
+  /* Force Vazir font for elements with font-vazir class */
+  .font-vazir {
+    font-family: "Vazir", system-ui, sans-serif !important;
   }
 
   /* Allow text selection in inputs if needed */
@@ -13,6 +39,36 @@
   textarea {
     -webkit-user-select: text;
     user-select: text;
+  }
+
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+
+  /* Hide scrollbar for category tabs */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -31,5 +87,26 @@
 
   .prevent-scroll {
     overscroll-behavior: none;
+  }
+
+  /* Line clamp utility */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Dark mode utilities */
+  .bg-surface {
+    background-color: var(--surface);
+  }
+
+  .text-text {
+    color: var(--text);
+  }
+
+  .bg-background {
+    background-color: var(--background);
   }
 }

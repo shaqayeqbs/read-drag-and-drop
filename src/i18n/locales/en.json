@@ -1,0 +1,106 @@
+{
+  "app": {
+    "title": "Online Restaurant",
+    "subtitle": "Drag items to cart or click to add 🍕"
+  },
+  "common": {
+    "back": "Back"
+  },
+  "nav": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "orders": "My Orders",
+    "language": "Language",
+    "theme": "Theme",
+    "home": "Home",
+    "profile": "Profile"
+  },
+  "categories": {
+    "all": "All",
+    "pizza": "Pizza",
+    "burger": "Burgers",
+    "pasta": "Pasta",
+    "salad": "Salads",
+    "drink": "Drinks",
+    "dessert": "Desserts",
+    "cafe": "Cafe",
+    "sandwich": "Sandwiches"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Cart is empty",
+    "emptyDescription": "Drag products here to add them",
+    "items": "items",
+    "total": "Total:",
+    "checkout": "Complete Order",
+    "remove": "Remove",
+    "add": "Add",
+    "subtract": "Remove"
+  },
+  "menu": {
+    "addToCart": "Add to Cart",
+    "toman": "Toman",
+    "noImage": "No Image"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "login": "Login",
+    "register": "Register",
+    "loginTitle": "Login to Your Account",
+    "registerTitle": "Create New Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Registration successful!",
+    "loginError": "Login failed",
+    "registerError": "Registration failed",
+    "forgotPassword": "Forgot password?"
+  },
+  "orders": {
+    "title": "Order History",
+    "noOrders": "No orders yet",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "preparing": "Preparing",
+      "ready": "Ready",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "orderNumber": "Order #",
+    "orderDate": "Order Date",
+    "orderTotal": "Total Amount"
+  },
+  "notifications": {
+    "addedToCart": "{{item}} added to cart!",
+    "removedFromCart": "{{item}} removed from cart!",
+    "quantityIncreased": "{{item}} quantity increased!",
+    "quantityDecreased": "{{item}} quantity decreased!",
+    "orderPlaced": "Order placed with total {{total}} Toman!",
+    "emptyCart": "Cart is empty!"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "changePassword": "Change Password",
+    "forgotPassword": "Forgot Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "address": "Delivery Address",
+    "addressPlaceholder": "Enter your delivery address",
+    "saveChanges": "Save Changes",
+    "changing": "Changing...",
+    "updated": "Profile updated successfully!",
+    "updateSuccess": "Profile updated successfully!",
+    "passwordMismatch": "Passwords do not match",
+    "passwordChanged": "Password changed successfully!",
+    "passwordChangeError": "Error changing password",
+    "passwordError": "Error changing password",
+    "resetEmailSent": "Password reset email sent!",
+    "resetEmailError": "Error sending reset email"
+  }
+}

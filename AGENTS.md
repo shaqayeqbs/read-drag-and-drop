@@ -1,0 +1,7 @@
+-   in typescript code, always declare consice correct type. do not use any type.
+-   use utils functions and api hooks if available. do not write inline functions for utilities.
+-   do not edit parts unrelated to your current task/scope.
+-   make sure every string is added with correct locale translation fa/en and no text is directly used anywhere.
+-   use other implemented pages as a guideline on your implementations.
+-   beware of the already implemented components/styles etc.
+-   don't install new tools/dependencies.
