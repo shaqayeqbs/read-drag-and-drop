@@ -30,6 +30,7 @@ import type {
   CartItem,
   FoodCategory,
   User,
+  Address,
   Order,
 } from "./types/types";
 import {
@@ -680,13 +681,8 @@ function App() {
                 {t("address.deliveryTo")}:
               </p>
               <p className="text-gray-800 dark:text-white font-medium">
-                {pendingOrderAddress.street}, {pendingOrderAddress.city}
+                {pendingOrderAddress.fullAddress}, {pendingOrderAddress.city}
               </p>
-              {pendingOrderAddress.notes && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {pendingOrderAddress.notes}
-                </p>
-              )}
             </div>
             <div className="flex gap-3">
               <button
