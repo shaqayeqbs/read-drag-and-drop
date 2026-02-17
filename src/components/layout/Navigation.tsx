@@ -8,6 +8,7 @@ import {
   Menu,
   ShoppingBasket,
   X,
+  Map,
 } from "lucide-react";
 import { LanguageDropdown } from "../ui/LanguageDropdown";
 import { ThemeToggle } from "../ui/ThemeToggle";
@@ -23,6 +24,7 @@ interface NavigationProps {
   onCartClick?: () => void;
   onMenuClick?: () => void;
   onHomeClick?: () => void;
+  onMapClick?: () => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({
@@ -36,6 +38,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   onCartClick,
   onMenuClick,
   onHomeClick,
+  onMapClick,
 }) => {
   const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -92,6 +95,15 @@ export const Navigation: React.FC<NavigationProps> = ({
               <div className="hidden sm:block">
                 <LanguageDropdown />
               </div>
+              {onMapClick && (
+                <button
+                  onClick={onMapClick}
+                  className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors font-vazir text-sm"
+                >
+                  <Map className="w-4 h-4" />
+                  <span className="hidden md:inline">{t("nav.map")}</span>
+                </button>
+              )}
               {isLoggedIn ? (
                 <div className="flex items-center gap-1.5">
                   <button
@@ -196,6 +208,22 @@ export const Navigation: React.FC<NavigationProps> = ({
                 </span>
                 <LanguageDropdown />
               </div>
+
+              {/* Map Link */}
+              {onMapClick && (
+                <button
+                  onClick={() => {
+                    onMapClick();
+                    closeSidebar();
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-left"
+                >
+                  <Map className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 font-vazir">
+                    {t("nav.map")}
+                  </span>
+                </button>
+              )}
 
               {/* User Actions */}
               {isLoggedIn ? (

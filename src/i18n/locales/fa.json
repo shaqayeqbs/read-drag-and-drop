@@ -15,7 +15,8 @@
     "language": "زبان",
     "theme": "تم",
     "home": "خانه",
-    "profile": "پروفایل"
+    "profile": "پروفایل",
+    "map": "تماس با ما"
   },
   "categories": {
     "all": "همه",
@@ -152,5 +153,15 @@
     "confirmDelivery": "تایید آدرس تحویل",
     "deliveryTo": "تحویل به",
     "change": "تغییر آدرس"
+  },
+  "map": {
+    "title": "ایستگاه‌های قطار جهانی",
+    "filterByCountry": "فیلتر بر اساس کشور:",
+    "filterByCity": "فیلتر بر اساس شهر:",
+    "allCountries": "همه کشورها",
+    "allCities": "همه شهرها",
+    "stationsCount": "ایستگاه‌ها ({{count}})",
+    "loading": "در حال بارگذاری ایستگاه‌ها...",
+    "loadError": "خطا در بارگذاری ایستگاه‌ها"
   }
 }

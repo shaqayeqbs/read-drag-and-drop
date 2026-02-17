@@ -75,3 +75,12 @@ export interface CategoryInfo {
   };
   icon: string;
 }
+
+export interface Station {
+  id: number;
+  name: string;
+  city: string;
+  country: string;
+  lat: number;
+  lng: number;
+}

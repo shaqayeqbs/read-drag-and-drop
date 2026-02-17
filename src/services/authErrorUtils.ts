@@ -1,9 +1,12 @@
 export const getAuthErrorMessage = (
-  error: any,
-  t: (key: string) => string
+  error: unknown,
+  t: (key: string) => string,
 ): string => {
   // Extract Firebase error code
-  const errorCode = error?.code || error?.message || "";
+  const errorCode =
+    (error as { code?: string; message?: string })?.code ||
+    (error as { code?: string; message?: string })?.message ||
+    "";
 
   // Map Firebase error codes to translation keys
   const errorMappings: Record<string, string> = {

@@ -3,6 +3,7 @@
 A modern React-based food ordering application with drag-and-drop functionality, built with TypeScript, Zustand, and Firebase.
 
 ## Features
+
 - 🛒 Drag & drop items to cart
 - 🔐 User authentication with Firebase
 - 🌙 Dark/Light theme support
@@ -11,8 +12,10 @@ A modern React-based food ordering application with drag-and-drop functionality,
 - 🌐 Multi-language support (English/Persian)
 - 📍 Address management and delivery
 - 📋 Order history tracking
+- 🗺️ Leaflet map with station list and city filtering
 
 ## Tech Stack
+
 - React 18 + TypeScript
 - Zustand for state management
 - Firebase (Auth + Firestore)
@@ -27,8 +30,10 @@ A modern React-based food ordering application with drag-and-drop functionality,
 2. Install dependencies: `npm install`
 3. Start development server: `npm run dev`
 4. Build for production: `npm run build`
+5. Run tests: `npm run test`
 
 ## Project Structure
+
 - `src/components/` - React components organized by feature
 - `src/services/` - API services and Firebase integration
 - `src/state/` - Zustand stores and context providers

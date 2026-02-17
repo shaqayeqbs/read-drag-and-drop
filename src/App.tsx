@@ -22,6 +22,7 @@ import { MobileSidebar } from "./components/layout/MobileSidebar";
 import { AuthModal } from "./components/ui/AuthModal";
 import { OrderModal } from "./components/ui/OrderModal";
 import { Profile } from "./pages/Profile";
+import MapPage from "./pages/MapPage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import type {
@@ -128,7 +129,7 @@ function App() {
   // State management
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<FoodCategory | "all">(
-    "all"
+    "all",
   );
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -137,7 +138,8 @@ function App() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isAddressConfirmOpen, setIsAddressConfirmOpen] = useState(false);
-  const [pendingOrderAddress, setPendingOrderAddress] = useState<any>(null);
+  const [pendingOrderAddress, setPendingOrderAddress] =
+    useState<Address | null>(null);
 
   const cartItems = useCartStore((state) => state.cartItems);
   const lastAddTime = useRef<number | null>(null);
@@ -281,7 +283,7 @@ function App() {
         delay: 300,
         tolerance: 8,
       },
-    })
+    }),
   );
 
   // Filter items based on category
@@ -353,19 +355,19 @@ function App() {
         toast.info(
           t("notifications.quantityIncreased", {
             item: i18n.language === "fa" ? item.name.fa : item.name.en,
-          })
+          }),
         );
       } else {
         toast.success(
           t("notifications.addedToCart", {
             item: i18n.language === "fa" ? item.name.fa : item.name.en,
-          })
+          }),
         );
       }
 
       useCartStore.getState().addToCart({ ...item, quantity: 1 });
     },
-    [cartItems, t, i18n.language]
+    [cartItems, t, i18n.language],
   );
 
   const removeFromCart = useCallback(
@@ -378,12 +380,12 @@ function App() {
               i18n.language === "fa"
                 ? itemToRemove.name.fa
                 : itemToRemove.name.en,
-          })
+          }),
         );
       }
       useCartStore.getState().removeFromCart(id);
     },
-    [cartItems, t, i18n.language]
+    [cartItems, t, i18n.language],
   );
 
   const updateQuantity = useCallback(
@@ -394,7 +396,7 @@ function App() {
       }
       useCartStore.getState().updateQuantity(id, quantity);
     },
-    [removeFromCart]
+    [removeFromCart],
   );
   const handleDragEnd = useCallback(
     (event: DragEndEvent) => {
@@ -414,7 +416,7 @@ function App() {
 
       // Reordering is disabled for filtered items
     },
-    [filteredItems, addToCart]
+    [filteredItems, addToCart],
   );
 
   // Order management
@@ -457,7 +459,7 @@ function App() {
     try {
       const total = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
-        0
+        0,
       );
 
       await createOrder({
@@ -474,7 +476,7 @@ function App() {
       toast.success(
         t("notifications.orderPlaced", {
           total: total.toLocaleString("fa-IR"),
-        })
+        }),
       );
 
       // Reload orders
@@ -526,7 +528,7 @@ function App() {
       handleHomeClick,
       activeCategory,
       setActiveCategory,
-    ]
+    ],
   );
 
   const ProfilePageComponent = useCallback(
@@ -579,7 +581,7 @@ function App() {
         </div>
       </div>
     ),
-    [currentUser, t, handleLogout, handleHomeClick, setIsAuthModalOpen]
+    [currentUser, t, handleLogout, handleHomeClick, setIsAuthModalOpen],
   );
 
   return (
@@ -601,6 +603,7 @@ function App() {
         onCartClick={handleCartClick}
         onMenuClick={() => setIsMobileSidebarOpen(true)}
         onHomeClick={handleHomeClick}
+        onMapClick={() => navigate("/map")}
       />
 
       <Routes>
@@ -620,10 +623,9 @@ function App() {
             />
           }
         />
-        {/* eslint-disable-next-line react-hooks/static-components */}
         <Route path="/cart" element={<CartPageComponent />} />
-        {/* eslint-disable-next-line react-hooks/static-components */}
         <Route path="/profile" element={<ProfilePageComponent />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
 
       {/* Drag Overlay */}
@@ -717,6 +719,7 @@ function App() {
         onHomeClick={handleHomeClick}
         onCartClick={handleCartClick}
         cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+        onMapClick={() => navigate("/map")}
       />
 
       {/* Toast notifications */}

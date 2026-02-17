@@ -15,7 +15,8 @@
     "language": "Language",
     "theme": "Theme",
     "home": "Home",
-    "profile": "Profile"
+    "profile": "Profile",
+    "map": "Contact Us"
   },
   "categories": {
     "all": "All",
@@ -152,5 +153,15 @@
     "confirmDelivery": "Confirm Delivery Address",
     "deliveryTo": "Deliver to",
     "change": "Change Address"
+  },
+  "map": {
+    "title": "Global Train Stations",
+    "filterByCountry": "Filter by Country:",
+    "filterByCity": "Filter by City:",
+    "allCountries": "All Countries",
+    "allCities": "All Cities",
+    "stationsCount": "Stations ({{count}})",
+    "loading": "Loading stations...",
+    "loadError": "Failed to load stations"
   }
 }

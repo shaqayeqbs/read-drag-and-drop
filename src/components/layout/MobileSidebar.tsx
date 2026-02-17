@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { X, Home, Package, User, ShoppingBag } from "lucide-react";
+import { X, Home, Package, User, ShoppingBag, Map } from "lucide-react";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ interface MobileSidebarProps {
   onHomeClick: () => void;
   onCartClick: () => void;
   cartItemCount: number;
+  onMapClick: () => void;
 }
 
 export const MobileSidebar: React.FC<MobileSidebarProps> = ({
@@ -28,6 +29,7 @@ export const MobileSidebar: React.FC<MobileSidebarProps> = ({
   onHomeClick,
   onCartClick,
   cartItemCount,
+  onMapClick,
 }) => {
   const { t } = useTranslation();
 
@@ -66,6 +68,18 @@ export const MobileSidebar: React.FC<MobileSidebarProps> = ({
           >
             <Home className="w-5 h-5" />
             <span className="font-vazir">{t("nav.home")}</span>
+          </button>
+
+          {/* Map */}
+          <button
+            onClick={() => {
+              onMapClick();
+              onClose();
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          >
+            <Map className="w-5 h-5" />
+            <span className="font-vazir">{t("nav.map")}</span>
           </button>
 
           {/* Cart */}
