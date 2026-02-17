@@ -100,80 +100,50 @@ const MapPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-center dark:text-white">
+    <div className="container mx-auto px-4 py-4 md:py-8">
+      <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center dark:text-white">
         {t("map.title")}
       </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Filters */}
-        <div className="lg:col-span-1">
-          <label
-            htmlFor="city-filter"
-            className="block text-sm font-medium mb-2 dark:text-gray-200"
-          >
-            {t("map.filterByCity")}
-          </label>
-          <select
-            id="city-filter"
-            value={selectedCity}
-            onChange={(e) => handleCityChange(e.target.value)}
-            className="border border-gray-300 dark:border-gray-600 rounded pl-3 pr-10 py-2 w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 appearance-none bg-no-repeat bg-[length:1.5em_1.5em] bg-[right_0.5rem_center]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-            }}
-          >
-            <option value="">{t("map.allCities")}</option>
-            {cities.map((city) => (
-              <option key={city} value={city}>
-                {city}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="hidden lg:block lg:col-span-2" />
+      {/* Filters */}
+      <div className="mb-4 md:mb-6">
+        <label
+          htmlFor="city-filter"
+          className="block text-sm font-medium mb-2 dark:text-gray-200"
+        >
+          {t("map.filterByCity")}
+        </label>
+        <select
+          id="city-filter"
+          value={selectedCity}
+          onChange={(e) => handleCityChange(e.target.value)}
+          className="border border-gray-300 dark:border-gray-600 rounded pl-3 pr-10 py-2 w-full md:w-auto md:min-w-[250px] bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 appearance-none bg-no-repeat bg-[length:1.5em_1.5em] bg-[right_0.5rem_center]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+          }}
+        >
+          <option value="">{t("map.allCities")}</option>
+          {cities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-        {/* Stations List */}
-        <div className="lg:col-span-1">
-          <h2 className="text-xl font-semibold mb-4 dark:text-white">
-            {t("map.stationsCount", { count: filteredStations.length })}
-          </h2>
-          <div className="max-h-96 overflow-y-auto border border-gray-300 dark:border-gray-600 rounded p-4 bg-white dark:bg-gray-800">
-            {filteredStations.map((station) => (
-              <div
-                key={station.id}
-                className={`p-3 mb-2 rounded cursor-pointer transition-colors ${
-                  selectedStation?.id === station.id
-                    ? "bg-blue-100 dark:bg-blue-900"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-700"
-                }`}
-                onClick={() => handleStationClick(station)}
-              >
-                <div className="font-medium dark:text-white">
-                  {station.name}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {station.city}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Map */}
-        <div className="lg:col-span-2">
+      <div className="flex flex-col lg:grid lg:grid-cols-3 gap-4 md:gap-6">
+        {/* Map - Show first on mobile */}
+        <div className="order-1 lg:order-2 lg:col-span-2">
           <div
-            className="h-[500px] lg:h-full border border-gray-300 dark:border-gray-600 rounded overflow-hidden"
-            style={{ minHeight: "500px" }}
+            className="h-[400px] md:h-[500px] lg:h-[600px] border border-gray-300 dark:border-gray-600 rounded overflow-hidden relative"
+            style={{ zIndex: 1, isolation: "isolate", position: "relative" }}
           >
             <MapContainer
               center={DEFAULT_CENTER}
               zoom={6}
               style={{ height: "100%", width: "100%" }}
               scrollWheelZoom={true}
+              zoomControl={true}
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -198,6 +168,33 @@ const MapPage: React.FC = () => {
               ))}
               <MapController selectedStation={selectedStation} />
             </MapContainer>
+          </div>
+        </div>
+
+        {/* Stations List - Show below map on mobile */}
+        <div className="order-2 lg:order-1 lg:col-span-1">
+          <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 dark:text-white">
+            {t("map.stationsCount", { count: filteredStations.length })}
+          </h2>
+          <div className="max-h-[300px] md:max-h-96 lg:max-h-[500px] overflow-y-auto border border-gray-300 dark:border-gray-600 rounded p-3 md:p-4 bg-white dark:bg-gray-800">
+            {filteredStations.map((station) => (
+              <div
+                key={station.id}
+                className={`p-2 md:p-3 mb-2 rounded cursor-pointer transition-colors ${
+                  selectedStation?.id === station.id
+                    ? "bg-blue-100 dark:bg-blue-900"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-700"
+                }`}
+                onClick={() => handleStationClick(station)}
+              >
+                <div className="font-medium text-sm md:text-base dark:text-white">
+                  {station.name}
+                </div>
+                <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                  {station.city}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

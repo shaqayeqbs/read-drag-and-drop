@@ -74,15 +74,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md m-4">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+      style={{ isolation: "isolate" }}
+    >
+      <div
+        className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md m-4 relative z-[51]"
+        style={{ isolation: "isolate", WebkitTransform: "translate3d(0,0,0)" }}
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-gray-800 dark:text-white font-vazir">
             {isForgotPassword
               ? t("profile.forgotPassword")
               : isLoginMode
-              ? t("auth.loginTitle")
-              : t("auth.registerTitle")}
+                ? t("auth.loginTitle")
+                : t("auth.registerTitle")}
           </h2>
           <button
             onClick={() => {
@@ -218,8 +224,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 {isLoading
                   ? "..."
                   : isLoginMode
-                  ? t("auth.login")
-                  : t("auth.register")}
+                    ? t("auth.login")
+                    : t("auth.register")}
               </button>
             </form>
 

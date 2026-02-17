@@ -41,10 +41,14 @@ export const MobileSidebar: React.FC<MobileSidebarProps> = ({
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-[10000] lg:hidden"
         onClick={onClose}
+        style={{ isolation: "isolate" }}
       />
 
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl z-[10001] transform transition-transform duration-300 lg:hidden">
+      <div
+        className="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-xl z-[10001] transition-all duration-300 lg:hidden"
+        style={{ isolation: "isolate", WebkitTransform: "translate3d(0,0,0)" }}
+      >
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-bold text-gray-800 dark:text-white font-vazir">
             {t("app.title")}

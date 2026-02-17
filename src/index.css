@@ -20,7 +20,9 @@
     background: var(--background);
     color: var(--text);
     font-family: "Inter", system-ui, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   /* Apply Vazir font for Persian/RTL */
@@ -69,6 +71,45 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* iOS Safari z-index fix for leaflet map */
+  .leaflet-container {
+    z-index: 1 !important;
+    position: relative;
+  }
+
+  .leaflet-pane {
+    z-index: auto !important;
+  }
+
+  .leaflet-tile-pane {
+    z-index: 1 !important;
+  }
+
+  .leaflet-overlay-pane {
+    z-index: 2 !important;
+  }
+
+  .leaflet-shadow-pane {
+    z-index: 3 !important;
+  }
+
+  .leaflet-marker-pane {
+    z-index: 4 !important;
+  }
+
+  .leaflet-tooltip-pane {
+    z-index: 5 !important;
+  }
+
+  .leaflet-popup-pane {
+    z-index: 6 !important;
+  }
+
+  /* Ensure leaflet control elements stay within map context */
+  .leaflet-control-container {
+    z-index: 100 !important;
   }
 }
 

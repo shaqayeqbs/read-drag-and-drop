@@ -26,13 +26,19 @@ export const MobileCartModal: React.FC<MobileCartModalProps> = ({
 
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end">
-      <div className="bg-background w-full max-h-[80vh] rounded-t-3xl shadow-2xl overflow-hidden">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 z-[10000] flex items-end"
+      style={{ isolation: "isolate" }}
+    >
+      <div
+        className="bg-background w-full max-h-[80vh] rounded-t-3xl shadow-2xl overflow-hidden relative z-[10001]"
+        style={{ isolation: "isolate", WebkitTransform: "translate3d(0,0,0)" }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-2">

@@ -37,8 +37,14 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-2xl max-h-[80vh] overflow-hidden m-4">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+      style={{ isolation: "isolate" }}
+    >
+      <div
+        className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-2xl max-h-[80vh] overflow-hidden m-4 relative z-[51]"
+        style={{ isolation: "isolate", WebkitTransform: "translate3d(0,0,0)" }}
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-gray-800 dark:text-white font-vazir">
             {t("orders.title")}
@@ -79,7 +85,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                       <p className="text-xs text-gray-500 dark:text-gray-500 font-vazir">
                         {t("orders.orderDate")}:{" "}
                         {new Date(order.createdAt).toLocaleDateString(
-                          i18n.language === "fa" ? "fa-IR" : "en-US"
+                          i18n.language === "fa" ? "fa-IR" : "en-US",
                         )}
                       </p>
                     </div>
@@ -118,10 +124,10 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                         <span className="font-vazir">
                           {i18n.language === "fa"
                             ? (item.price * item.quantity).toLocaleString(
-                                "fa-IR"
+                                "fa-IR",
                               )
                             : (item.price * item.quantity).toLocaleString(
-                                "en-US"
+                                "en-US",
                               )}{" "}
                           {t("menu.toman")}
                         </span>
