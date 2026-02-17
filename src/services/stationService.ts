@@ -8,19 +8,10 @@ export const fetchStations = async (): Promise<Station[]> => {
     if (!response.ok) {
       throw new Error("Failed to fetch stations");
     }
-    const germanStations: Station[] = await response.json();
-
-    // Add country field to German stations
-    const stationsWithCountry = germanStations.map((station) => ({
-      ...station,
-      country: "Germany",
-    }));
-
-    // Combine German stations with additional stations
-    return [...stationsWithCountry];
+    const stations: Station[] = await response.json();
+    return stations;
   } catch (error) {
     console.error("Error fetching stations:", error);
-    // If API fails, return only additional stations
     return [];
   }
 };

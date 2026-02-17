@@ -95,15 +95,13 @@ describe("MapPage", () => {
       expect(screen.getAllByText("Berlin Hbf").length).toBeGreaterThan(0);
     });
 
-    // Select country first
-    const countrySelect = screen.getByLabelText(/filter by country/i);
-    fireEvent.change(countrySelect, { target: { value: "Germany" } });
-
-    // Then select city
+    // Select city
     const citySelect = screen.getByLabelText(/filter by city/i);
     fireEvent.change(citySelect, { target: { value: "Berlin" } });
 
-    expect(screen.getAllByText("Berlin Hbf").length).toBeGreaterThan(0);
-    expect(screen.queryByText("Hamburg Hbf")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getAllByText("Berlin Hbf").length).toBeGreaterThan(0);
+      expect(screen.queryByText("Hamburg Hbf")).not.toBeInTheDocument();
+    });
   });
 });

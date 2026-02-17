@@ -80,7 +80,7 @@ export interface Station {
   id: number;
   name: string;
   city: string;
-  country: string;
+  country?: string;
   lat: number;
   lng: number;
 }
