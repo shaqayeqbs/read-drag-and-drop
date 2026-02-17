@@ -105,9 +105,9 @@ const MapPage: React.FC = () => {
         {t("map.title")}
       </h1>
 
-      {/* Filters */}
-      <div className="mb-6">
-        <div className="max-w-md">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Filters */}
+        <div className="lg:col-span-1">
           <label
             htmlFor="city-filter"
             className="block text-sm font-medium mb-2 dark:text-gray-200"
@@ -118,7 +118,10 @@ const MapPage: React.FC = () => {
             id="city-filter"
             value={selectedCity}
             onChange={(e) => handleCityChange(e.target.value)}
-            className="border border-gray-300 dark:border-gray-600 rounded px-3 py-2 w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            className="border border-gray-300 dark:border-gray-600 rounded pl-3 pr-10 py-2 w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 appearance-none bg-no-repeat bg-[length:1.5em_1.5em] bg-[right_0.5rem_center]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+            }}
           >
             <option value="">{t("map.allCities")}</option>
             {cities.map((city) => (
@@ -128,9 +131,11 @@ const MapPage: React.FC = () => {
             ))}
           </select>
         </div>
+
+        <div className="hidden lg:block lg:col-span-2" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         {/* Stations List */}
         <div className="lg:col-span-1">
           <h2 className="text-xl font-semibold mb-4 dark:text-white">
